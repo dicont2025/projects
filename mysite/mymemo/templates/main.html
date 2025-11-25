@@ -13,7 +13,7 @@
     <body>
         <h1>메모 양식</h1>
         <form action="http://localhost:8000/mymemo/create/" method="POST" id="memoCreateForm">
-            {% csrf_token %}
+            
             <label for ="memo">메모 내용</label>
             <input type = "text" id="memo" name="memoContent" size="100" placeholder="내용을 작성하세요" autocomplete="off">
         </form>
