@@ -20,5 +20,16 @@
         <div>
             <button type="submit" form="memoCreateForm">등록하기</button>
         </div>
+        <div class = "list-section">
+            <h2>글 리스트</h2>
+            <ul>
+                {% for usermemo in lists %}
+                <li>
+                    <b> {{ usermemo.id }} </b> 
+                    {{ usermemo.text }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </body>
 </html>
