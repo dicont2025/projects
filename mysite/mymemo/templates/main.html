@@ -12,8 +12,9 @@
     </head>
     <body>
         <h1>메모 양식</h1>
-        <form action="http://localhost:8000/mymemo/create/" method="POST" id="memoCreateForm">
-            
+        <form action="/mymemo/create/" method="POST" id="memoCreateForm">
+            {% csrf_token %}
+
             <label for ="memo">메모 내용</label>
             <input type = "text" id="memo" name="memoContent" size="100" placeholder="내용을 작성하세요" autocomplete="off">
         </form>
@@ -22,14 +23,21 @@
         </div>
         <div class = "list-section">
             <h2>글 리스트</h2>
-            <ul>
-                {% for usermemo in lists %}
-                <li>
-                    <b> {{ usermemo.id }} </b> 
-                    {{ usermemo.text }}
-                </li>
-                {% endfor %}
-            </ul>
+            {% if lists %}
+                <ul>
+                    {% for usermemo in lists %}
+                    <li>
+                        <b> {{ usermemo.id }} </b> 
+                        {{ usermemo.text }}
+                        <small style="color:deeppink; font-weight: bold">{{ usermemo.published_date | date:"y-m-d"}}</small>
+                        &nbsp; &nbsp;
+                        [<a href='./edit/{{usermemo.id}}'>수정</a>]
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p> 아직 등록된 메모가 없습니다. </p>
+            {% endif %}
         </div>
     </body>
 </html>
