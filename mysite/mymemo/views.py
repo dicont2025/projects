@@ -11,3 +11,8 @@ def create(request):
     usermemo = Memo(text = content)
     usermemo.save()
     return HttpResponse("사용자 입력 = "+content)
+
+def editPage(request, idx):
+    article = Memo.objects.get(id=idx)
+    data = {'article': article}
+    return render(request, 'edit.html', data)
